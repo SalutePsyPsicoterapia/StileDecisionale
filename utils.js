@@ -2,12 +2,13 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 // 🔧 CONFIGURA QUI
-const supabase = createClient(
-      'https://mtaswzwpoyjfgbxvroxi.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10YXN3endwb3lqZmdieHZyb3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0ODMxMzEsImV4cCI6MjA3NTA1OTEzMX0.GJsLdv9ZRGfJ6LFqz-SLxqC3ooQ7XXLMXy5ZAfv0-tw'
-    );
+export const supabase = createClient(
+  'https://mtaswzwpoyjfgbxvroxi.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10YXN3endwb3lqZmdieHZyb3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0ODMxMzEsImV4cCI6MjA3NTA1OTEzMX0.GJsLdv9ZRGfJ6LFqz-SLxqC3ooQ7XXLMXy5ZAfv0-tw'
+);
 
-window.supabase = supabase;  // solo per debug
+// opzionale: solo per debug in console
+window.supabase = supabase;
 
 // stato
 export function getState() {
@@ -39,14 +40,14 @@ export function buildPayloadFromState(state) {
 
 // insert con log dettagliato
 export async function saveResponse(payload) {
-  const { data, error } = await supabase
+  const { data, error, status } = await supabase
     .from('responses')
-    .insert(payload, {returning: 'minimal'});
+    .insert([payload], { returning: 'minimal' }); // 👈 array
 
   if (error) {
-    console.error('Supabase INSERT error →', error);
+    console.error('Supabase INSERT error →', { status, error });
   } else {
-    console.log('Supabase INSERT ok →', data);
+    console.log('Supabase INSERT ok →', { status, data });
   }
-  return { data, error };
+  return { data, error, status };
 }
