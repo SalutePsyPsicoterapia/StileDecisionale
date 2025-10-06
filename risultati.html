@@ -264,6 +264,28 @@
     });
 
     new ResizeObserver(() => chart.resize()).observe(canvas.parentElement);
+
+    try {
+      const state = JSON.parse(localStorage.getItem('od.state') || '{}');
+      if (!state?.results) return;        // niente risultati → non inviare
+      if (state?.saved === true) return;  // evita duplicati
+
+      // import dinamico: utils.js è ESM
+      const { buildPayloadFromState, saveResponse, setState } = await import('./utils.js');
+
+      const payload = buildPayloadFromState(state);
+      const { error, status } = await saveResponse(payload);
+      console.log('[Supabase insert] status:', status, 'error:', error);
+
+      if (!error) {
+        state.saved = true;
+        setState(state);
+        console.log('✅ Dati salvati su Supabase');
+      }
+    } catch (err) {
+      console.error('❌ Errore invio:', err);
+    }
+    
   });
 
   document.getElementById('downloadPdf')?.addEventListener('click', () => {
@@ -272,41 +294,7 @@
   });
 </script>
 
-<script type="module">
-  import { getState, setState, buildPayloadFromState, saveResponse } from './utils.js';
-
-   if (window._invioInCorso) {
-    console.log('Invio già in corso/effettuato in questa sessione');
-  } else {
-    window._invioInCorso = true;
-
-    (async () => {
-      const state = getState();
-  
-      // non inviare se mancano i risultati
-      if (!state?.results) return;
-  
-      // evita doppio invio se ricarica la pagina
-      if (state?.saved === true) {
-        console.log('Già salvato: salto INSERT');
-        return;
-      }
-  
-      const payload = buildPayloadFromState(state);
-      const { error } = await saveResponse(payload);
-  
-      // se tutto ok → segna come salvato
-      if (!error) {
-        state.saved = true;
-        setState(state);
-        console.log('✅ Dati salvati su Supabase');
-      } else {
-          console.error('❌ Errore Supabase:', error);
-        }
-    })();
-   }
-</script>
-
 </body>
 
 </html>
+
