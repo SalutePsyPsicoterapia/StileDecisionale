@@ -11,7 +11,7 @@ export const supabase = createClient(
       detectSessionInUrl: false,
     },
   }
-)
+);
 
 // stato
 export function getState() {
@@ -50,3 +50,4 @@ export async function saveResponse(payload) {
 
   return { data, error, status }
 }
+
