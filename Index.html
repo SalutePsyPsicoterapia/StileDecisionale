@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrientaDiplomandi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-blue-900 flex flex-col gap-10 items-center justify-between min-h-screen overflow-hidden ">
+    <div class=" w-full h-20 flex items-center justify-center gap-28 mt-6">
+        <a href="https://www.salutepsy.it/" target="_blank">
+            <img src="Logo_sp_white.svg" alt="SalutePsy Logo" class="h-16">
+        </a>
+        <a href="https://www.talentsventure.com/" target="_blank">
+            <img src="logo_tv_white.svg" alt="Talents Venture Logo" class="h-10">
+        </a>
+    </div>
+    <div class="w-full max-w-lg p-8 bg-white rounded-lg shadow-xl mb-20">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">OrientaDiplomandi</h1>
+        <p class="text-center text-gray-600 mb-8">
+            Per iniziare, inserisci i tuoi dati. Tutti i campi sono obbligatori.
+        </p>
+
+        <form id="infoForm" class="space-y-6">
+            <div>
+                <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
+                <input type="text" id="nome" name="nome" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              placeholder="Mario">
+            </div>
+
+            <div>
+                <label for="cognome" class="block text-sm font-medium text-gray-700">Cognome</label>
+                <input type="text" id="cognome" name="cognome" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              placeholder="Rossi">
+            </div>
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              placeholder="mario.rossi@email.it">
+            </div>
+
+            <div>
+                <label for="azienda" class="block text-sm font-medium text-gray-700">Azienda</label>
+                <input type="text" id="azienda" name="azienda" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              placeholder="Es. ICCREA">
+            </div>
+
+            <div>
+                <label for="scuola" class="block text-sm font-medium text-gray-700">Scuola Frequentata</label>
+                <input type="text" id="scuola" name="scuola" required 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              placeholder="Es. Scientifico">
+            </div>
+            
+            <div id="validationMessage" class="text-red-500 text-center hidden">
+                <p>⚠️ Per favore, compila tutti i campi.</p>
+            </div>
+
+            <button type="submit" 
+                    class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md 
+                           hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 
+                           focus:ring-indigo-500 transition-colors duration-200">
+                Avanti
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('infoForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = Object.fromEntries(new FormData(e.target).entries());
+
+        const state = {
+            user,
+            answers: null,
+            results: null,
+            ts: Date.now(),
+            version: 1
+        };
+
+        localStorage.setItem('od.state', JSON.stringify(state));
+        window.location.href = 'questionario.html';
+        });
+    </script>
+</body>
+</html>

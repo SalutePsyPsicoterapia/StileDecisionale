@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+        body{
+            background: #f0f0f0;
+        }
+    </style>
+    <title>OrientaDiplomandi</title>
+</head>
+<body>
+    <div class="w-[210mm] min-h-[297mm] my-[10mm] mx-auto bg-white shadow-md box-content flex flex-col" 
+    style="background: url('copertina_restituzione.svg') no-repeat center center; background-size: cover;">
+    </div>
+    <div class="[break-before:page] w-[210mm] min-h-[297mm] my-[10mm] mx-auto bg-white shadow-md box-content flex flex-col">
+        <div class="bg-[#02356F] h-[60px] flex justify-between items-center px-5 text-white font-light">
+            <h1>OrientaDiplomandi - Talents Venture</h1>
+            <h1 id="data"></h1>
+        </div>
+        <div class="flex flex-col text-center mx-5 mt-5 font-semibold gap-3">
+            <p class="text-xl"><span class="font-extrabold" id="fullName"></span>, da quanto emerso dalle tue risposte al questionario, il tuo stile prevalente* è il</p>
+            <span id="stile" data-styled-text class="font-extrabold text-5xl"></span>
+        </div>
+        <div id="risposteDisplay" class="m-5 h-[250px] rounded-xl flex gap-2">
+            <img id="stileImmagine" src="" alt="Illustrazione stile" class="size-[250px] rounded-l-xl">
+            <div class="border w-full m-[10px] p-2 flex flex-col items-center gap-1">
+                <p data-styled-text class="font-bold text-xl">LE TUE RISPOSTE</p>
+                <div class="border w-full h-full"></div>
+            </div>
+        </div>
+        <div class="hidden
+            bg-[#821F43] bg-[#E5B655] bg-[#02356F]
+            text-[#821F43] text-[#E5B655] text-[#02356F]">
+        </div>
+        <div class="h-[80px] mx-5 flex flex-row gap-3">
+            <div class="border w-full rounded-lg bg-[#FFF5D1] border-[#E5B655] text-[#E5B655] text-center text-xl p-1">
+                <p>COSTRUTTORE</p>
+                <span id="valoreCreatore"></span>
+            </div>
+            <div class="border w-full rounded-lg bg-[#FFD2CE] border-[#821F43] text-[#821F43] text-center text-xl p-1">
+                <p>CERCATORE</p>
+                <span id="valoreCercatore"></span>
+            </div>
+            <div class="border w-full rounded-lg bg-[#CDE4FE] border-[#02356F] text-[#02356F] text-center text-xl p-1">
+                <p>PIANIFICATORE</p>
+                <span id="valorePianificatore"></span>
+            </div>
+        </div>
+        <div class="m-5 flex-grow flex flex-col gap-2">
+            <div class="border rounded-lg p-2 flex flex-col gap-2">
+                <p id="stileDescrizione" class="text-center"></p>
+                <div class="flex flex-row gap-2 ">
+                    <div class="border w-1/2 rounded-lg p-2">
+                        <p class="mb-2">I tuoi punti di forza sono:</p>
+                        <ul id="forza" class="list-disc pl-5 space-y-1 text-sm"></ul>
+                    </div>
+                    <div class="border w-1/2 rounded-lg p-2">
+                        <p class="mb-2">Alcuni consigli per te:</p>
+                        <ul id="consigli" class="list-disc pl-5 space-y-1 text-sm"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-grow border rounded-lg p-2 text-gray-200">
+                <p>Aggiungi le tue note qui</p>
+            </div>
+            <p class="font-light text-gray-400 text-[12px] leading-tight">I dati presentati in questo documento verranno poi presentati e spiegati durante il webinar da SalutePsy, ti invitiamo a conservare questo foglio.
+            <br>*Ogni profilo prevede una combinazione, in percentuali diverse, dei tre stili.</p>
+        </div>
+        <div class="h-[60px] bg-[#02356F] flex px-5 text-white items-center justify-between">
+            <div class="flex gap-5">
+                <img src="Logo_sp_white.svg" alt="">
+                <img src="logo_tv_white.svg" alt="">
+            </div>
+            <div class="text-[12px]">
+                <p>www.salutepsy.it</p>
+                <p>www.talentsventure.com</p>
+            </div>
+        </div>
+
+    </div>
+    <script>
+
+        const stile = 'PIANIFICATORE';
+        const fullName = 'Marco Rossi';
+        const timeElapsed = Date.now();
+        const data = new Date(timeElapsed);
+
+        const STYLE_MAP = {
+            CERCATORE: {
+                bgClass:   'bg-[#FFCDC8]',
+                textClass: 'text-[#821F43]',
+                bgHex:     '#FFCDC8',
+                textHex:   '#821F43',
+                img:       'img/cercatore.png',
+                descrizione: 'Sei in una fase di esplorazione e riflessione, e questo è perfettamente normale.',
+                forza: [
+                    "Apertura all'esperienza",
+                    'Capacità di riflessione',
+                    'Flessibilità mentale',
+                    'Consapevolezza dei propri bisogni di crescita',
+                ],
+                consigli: [
+                    'Regola 1–1–1: 1 obiettivo, 1 progetto, 1 settimana.',
+                    'Timer di decisione (10′) per evitare indecisione: scegli e parti.',
+                    'Definition of Done: 3 criteri di “fatto” prima di iniziare.',
+                    'Soglia di abbandono: dopo 2 micro-test senza valore, chiudi.'
+                ]
+            },
+            COSTRUTTORE: {
+                bgClass:   'bg-[#FFF5D1]',
+                textClass: 'text-[#E5B655]',
+                bgHex:     '#FFF5D1',
+                textHex:   '#E5B655',
+                img:       './img/costruttore.png',
+                descrizione: 'Sei una persona che preferisce costruire il proprio percorso passo dopo passo.',
+                forza: [
+                    'Pragmatismo',
+                    'Capacità di adattamento',
+                    'Approccio graduale alle sfide',
+                    'Resilienza nel superare le difficoltà'
+                ],
+                consigli: [
+                    'Brief di 5 righe: scopo, utente, risultato atteso, tempo limite, metrica.',
+                    'Feedback ogni 48h: mostra un artefatto e chiedi 2 miglioramenti concreti.',
+                    'Checkpoint “perché” a metà: riallinea deliverable e problema iniziale.',
+                    'Stop all’80%: consegna e rifinisci dopo il feedback reale.'
+                ]
+            },
+            PIANIFICATORE: {
+                bgClass:   'bg-[#364F66]',
+                textClass: 'text-[#CDE4FE]',
+                bgHex:     '#364F66',
+                textHex:   '#CDE4FE',
+                img:       'img/planner.png',
+                descrizione: 'Sei una persona organizzata e determinata, con idee chiare sul tuo futuro.',
+                forza: [
+                    'Capacità di pianificazione',
+                    'Chiarezza negli obiettivi',
+                    'Gestione efficace del tempo',
+                    'Sicurezza nelle decisioni'
+                ],
+                consigli:[
+                    '60/30/10: 60% esecuzione, 30% pianificazione, 10% buffer con slot in agenda.',
+                    'Prototipo in 60′: versione minima “brutta ma utile” prima di ottimizzare.',
+                    'Tre scenari (O/R/P): scegli azioni comuni ai tre per sbloccarti.',
+                    'Re-prioritizzazione ogni 2 settimane: elimina 1 attività non essenziale.'
+                ]
+            }
+            };
+
+        function applyDominantStyle(stile) {
+            const cfg = STYLE_MAP[stile] || STYLE_MAP.COSTRUTTORE;
+
+            // 1) Colore testi
+            const textTargets = document.querySelectorAll('[data-styled-text]');
+            textTargets.forEach(el => {
+                // rimuovi eventuali classi dei tre stili
+                Object.values(STYLE_MAP).forEach(s => el.classList.remove(s.textClass));
+                // aggiungi la classe dell'attuale stile (Tailwind)
+                el.classList.add(cfg.textClass);
+                // fallback CSS nativo (nel caso Tailwind non abbia generato la classe)
+                el.style.color = cfg.textHex;
+            });
+
+            // 2) Sfondo box principale
+            const box = document.getElementById('risposteDisplay');
+            if (box) {
+                Object.values(STYLE_MAP).forEach(s => box.classList.remove(s.bgClass));
+                box.classList.add(cfg.bgClass);
+                // fallback CSS nativo
+                box.style.backgroundColor = cfg.bgHex;
+            }
+
+            // 3) Immagine stile
+            const img = document.getElementById('stileImmagine');
+            if (img) {
+                img.src = cfg.img;
+                img.alt = `Illustrazione stile ${stile}`;
+            }
+
+            function renderList(targetId, items = []) {
+                const ul = document.getElementById(targetId);
+                if (!ul) return;
+                const nodes = (items || [])
+                    .filter(Boolean)
+                    .map(text => {
+                    const li = document.createElement('li');
+                    li.textContent = text; // sicuro
+                    return li;
+                    });
+                ul.replaceChildren(...nodes); // sostituisce tutto in un colpo
+                }
+
+
+            document.getElementById('stileDescrizione')?.replaceChildren(cfg.descrizione);
+            renderList('forza',cfg.forza);
+            renderList('consigli', cfg.consigli);
+            }
+
+        document.getElementById('fullName').textContent = fullName;
+        document.getElementById('data').textContent = data.toLocaleDateString();
+        document.getElementById('stile').textContent = stile;
+        
+        applyDominantStyle(stile);
+
+        
+    </script>
+
+</body>
+</html>

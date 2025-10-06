@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>OrientaDiplomandi</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font for charts/text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Your optional custom styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root { --brand-font: 'Merriweather Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { font-family: var(--brand-font); }
+    @page { size: A4; margin: 20mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  </style>
+
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-blue-900 flex flex-col items-center min-h-screen">
+  <!-- Logos -->
+  <div class="w-full max-w-6xl h-20 flex items-center justify-center gap-16 md:gap-28 mt-6 mb-6 px-4">
+    <a href="https://www.salutepsy.it/" target="_blank" class="shrink-0" aria-label="Vai al sito SalutePsy">
+      <img src="Logo_sp_white.svg" alt="SalutePsy Logo" class="h-12 md:h-20" />
+    </a>
+    <a href="https://www.talentsventure.com/" target="_blank" class="shrink-0" aria-label="Vai al sito Talents Venture">
+      <img src="logo_tv_white.svg" alt="Talents Venture Logo" class="h-8 md:h-12" />
+    </a>
+  </div>
+
+  <!-- Card -->
+  <div class="w-full max-w-4xl p-6 md:p-8 bg-white rounded-2xl shadow-xl mb-20 flex flex-col gap-6 md:gap-8 mx-4">
+    <h1 class="text-xl md:text-2xl font-bold text-center leading-snug">
+      <span id="userName" class="whitespace-nowrap"></span>, dal questionario è emerso che sei un <br />
+      <span id="profileLabel" class="text-black text-2xl md:text-3xl"></span>
+    </h1>
+
+    <p class="text-center text-sm text-gray-500">
+      Ti ricordiamo comunque che il risultato riflette il tuo stile <span class="underline decoration-solid decoration-1 underline-offset-2">prevalente</span>, cioè la tendenza che emerge con maggiore frequenza. Questo non significa però che rappresenti in modo assoluto o definitivo tutte le tue modalità di comportamento o di espressione: ciascuno di noi, infatti, può adottare stili diversi a seconda del contesto, delle persone con cui interagisce e del momento specifico. Considera quindi il risultato come una traccia utile per conoscerti meglio, ma non come un’etichetta rigida o esclusiva.
+    </p>
+
+    <div class=" flex flex-col md:flex-row gap-4 md:gap-6 min-h-[300px]">
+      <div class=" w-full flex flex-col gap-4">
+        <div class="border border-[#E5B655] bg-[#FFFACC] rounded-xl flex items-center p-4 justify-between h-full">
+          <h2 class="text-2xl font-bold flex gap-2 items-center">COSTRUTTORE
+            <svg class="w-6 h-6 text-blue-600" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path d="M495.551,297.879c8.063-43.516,12.891-114.422-37.313-164.625c-27.938-27.938-54.281-54.266-54.281-54.266
+                  c-6.438-6.453-13.688-9.406-19.594-3.5l0,0c-2.531,2.531-6.891,2.797-9.406,0.281l-14.484-14.5
+                  c-2.531-2.516-2.25-6.875,0.266-9.406l3.484-3.484c2.531-2.516,2.531-6.609,0-9.125L328.754,3.785
+                  c-5.031-5.047-13.219-5.047-18.266,0L265.113,49.16c-5.047,5.063-5.047,13.234,0,18.281l35.469,35.453
+                  c2.516,2.531,6.594,2.531,9.125,0l2.141-2.141c2.516-2.516,6.625-2.516,9.141,0l7.172,7.172c9.672,9.672,5.641,18.125,0.594,23.172
+                  l0,0l-37.047,37.063l64.453,64.453l18.797-18.797c10.078-10.094,26.453-10.094,36.531,0c0,0,4.688,4.672,5.094,5.109
+                  c33.844,33.828,44.328,58.813,53.984,82.984C476.738,317.316,494.738,316.41,495.551,297.879z"/>
+                <path d="M68.629,507.488c6.016,6.016,15.766,6.016,21.781,0L237.879,360.02c6-6,6-15.75,0-21.766l-52.75-52.75
+                  c-6.016-6.016-15.75-6-21.766,0L15.895,432.973c-6.016,6.016-6.016,15.766,0,21.766L68.629,507.488z"/>
+                <polygon points="251.613,319.754 330.535,240.832 284.473,194.754 205.535,273.691"/>
+              </g>
+            </svg>
+
+          </h2>
+          <p id="costruttore" class="text-3xl font-bold" aria-live="polite"></p>
+        </div>
+        <div class="border border-[#821F43] bg-[#FFD2CE] rounded-xl flex items-center p-4 justify-between h-full">
+          <h2 class="text-2xl font-bold flex gap-2 items-center">CERCATORE
+            <svg class="w-6 h-6 text-blue-600" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path d="M29.156 29.961l-0.709 0.709c-0.785 0.784-2.055 0.784-2.838 0l-5.676-5.674c-0.656-0.658-0.729-1.644-0.281-2.412l-3.104-3.102c-1.669 1.238-3.728 1.979-5.965 1.979-5.54 0-10.031-4.491-10.031-10.031s4.491-10.032 10.031-10.032c5.541 0 10.031 4.491 10.031 10.032 0 2.579-0.98 4.923-2.58 6.7l3.035 3.035c0.768-0.447 1.754-0.375 2.41 0.283l5.676 5.674c0.784 0.785 0.784 2.056 0.001 2.839zM18.088 11.389c0-4.155-3.369-7.523-7.524-7.523s-7.524 3.367-7.524 7.523 3.368 7.523 7.523 7.523 7.525-3.368 7.525-7.523z"/>
+            </svg>
+          </h2>
+          <p id="cercatore" class="text-3xl font-bold" aria-live="polite"></p>
+        </div>
+        <div class="border border-[#02356F] bg-[#CDE4FE] rounded-xl flex items-center p-4 justify-between h-full">
+          <h2 class="text-2xl font-bold flex gap-2 items-center">PLANNER
+            <svg class="w-6 h-6 text-blue-600" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path d="M149.193,103.525c15.994,0,28.964-12.97,28.964-28.972V28.964C178.157,12.97,165.187,0,149.193,0
+                  C133.19,0,120.22,12.97,120.22,28.964v45.589C120.22,90.556,133.19,103.525,149.193,103.525z"/>
+                <path d="M362.815,103.525c15.994,0,28.964-12.97,28.964-28.972V28.964C391.78,12.97,378.81,0,362.815,0
+                  c-16.003,0-28.972,12.97-28.972,28.964v45.589C333.843,90.556,346.813,103.525,362.815,103.525z"/>
+                <path d="M435.164,41.287h-17.925v33.266c0,30.017-24.415,54.431-54.423,54.431c-30.017,0-54.431-24.414-54.431-54.431
+                  V41.287H203.615v33.266c0,30.017-24.414,54.431-54.422,54.431c-30.018,0-54.432-24.414-54.432-54.431V41.287H76.836
+                  c-38.528,0-69.763,31.235-69.763,69.763v331.187C7.073,480.765,38.308,512,76.836,512h358.328
+                  c38.528,0,69.763-31.235,69.763-69.763V111.05C504.927,72.522,473.691,41.287,435.164,41.287z M470.982,442.237
+                  c0,19.748-16.07,35.818-35.818,35.818H76.836c-19.749,0-35.818-16.07-35.818-35.818V155.138h429.964V442.237z"/>
+                <rect x="183.676" y="377.571" width="56.727" height="56.727"/>
+                <rect x="183.676" y="289.65" width="56.727" height="56.727"/>
+                <rect x="95.765" y="377.571" width="56.718" height="56.727"/>
+                <rect x="95.765" y="289.65" width="56.718" height="56.727"/>
+                <rect x="359.517" y="201.73" width="56.718" height="56.727"/>
+                <rect x="271.597" y="201.73" width="56.735" height="56.727"/>
+                <rect x="271.597" y="289.65" width="56.735" height="56.727"/>
+                <rect x="359.517" y="377.571" width="56.718" height="56.727"/>
+                <rect x="359.517" y="289.65" width="56.718" height="56.727"/>
+                <rect x="271.597" y="377.571" width="56.735" height="56.727"/>
+                <rect x="183.676" y="201.73" width="56.727" height="56.727"/>
+                <rect x="95.765" y="201.73" width="56.718" height="56.727"/>
+              </g>
+            </svg>
+
+
+          </h2>
+          <p id="planner" class="text-3xl font-bold" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <!-- Radar chart -->
+      <div class="bg-blue-50 w-full rounded-xl p-4">
+        <div class="relative h-[280px]">
+          <canvas id="RadarChart" aria-label="Grafico radar distribuzione profilo" role="img"></canvas>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="border w-full rounded-xl grid place-items-center text-gray-400 text-sm text-center p-2">
+      Premendo il bottone qui sotto procederai a scaricare il pdf personalizzato con l'esito del tuo questionario, ti chiediamo di scaricarlo e conservarlo fino al webinar dove ti verranno spiegati in modo più preciso i dati ottenuti
+    </div>
+
+    <button id="downloadPdf" class="w-full py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-md 
+        hover:from-blue-600 hover:to-blue-700 
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+        transition-colors duration-200 flex items-center justify-center gap-2">
+        <span>Scarica risultato</span>
+        <svg xmlns="http://www.w3.org/2000/svg" 
+            fill="none" viewBox="0 0 24 24" 
+            stroke-width="2.5" stroke="currentColor" 
+            class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 
+                  2.25 0 0021 18.75V16.5M7.5 10.5l4.5 4.5m0 0l4.5-4.5m-4.5 
+                  4.5V3" />
+        </svg>
+      </button>
+  </div>
+
+
+  <!-- Unica inclusione Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+
+<script>
+  // Conta A/B/C e restituisce percentuali (arrotondate) per i tre profili
+  function calcolaRisultati(answers) {
+    let countA = 0, countB = 0, countC = 0;
+    for (const k in answers) {
+      const v = (answers[k] || '').toLowerCase();
+      if (v === 'a') countA++;
+      else if (v === 'b') countB++;
+      else if (v === 'c') countC++;
+    }
+    const total = Math.max(countA + countB + countC, 1); // evita /0
+    const A = Math.round((countA / total) * 100);
+    const B = Math.round((countB / total) * 100);
+    const C = 100 - A - B; // chiusura a 100
+    return {
+      // mappa: A→Costruttore, B→Cercatore, C→Pianificatore
+      costruttore: C,
+      cercatore:   B,
+      planner:     A,
+      rawCounts: { A: countA, B: countB, C: countC, total }
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1) Leggi stato unico
+    const state = JSON.parse(localStorage.getItem('od.state') || '{}');
+
+    // 2) Se manca lo user -> torna all'index
+    if (!state.user || !state.user.nome) {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    // 3) Mostra nome completo
+    const fullName = [state.user.nome, state.user.cognome].filter(Boolean).join(' ');
+    document.getElementById('userName').textContent = fullName;
+
+    // 4) Calcola results se assenti ma ci sono le risposte
+    if (!state.results) {
+      if (!state.answers) {
+        // se non hai neanche le risposte, torna al questionario
+        window.location.href = 'questionario.html';
+        return;
+      }
+      state.results = calcolaRisultati(state.answers);
+      localStorage.setItem('od.state', JSON.stringify(state));
+    }
+
+    // 5) Prendi valori e normalizza a 100 (per sicurezza)
+    const values = {
+      costruttore: Number(state.results.costruttore ?? 0),
+      cercatore:   Number(state.results.cercatore   ?? 0),
+      planner:     Number(state.results.planner     ?? 0),
+    };
+    const sum = values.costruttore + values.cercatore + values.planner || 1;
+    values.costruttore = Math.round(values.costruttore / sum * 100);
+    values.cercatore   = Math.round(values.cercatore   / sum * 100);
+    values.planner     = 100 - values.costruttore - values.cercatore;
+
+    // 6) Profilo dominante: aggiorna il titolo (CERCATORE, COSTRUTTORE, PIANIFICATORE)
+    const entries = Object.entries(values); // [['costruttore',..], ...]
+    entries.sort((a,b) => b[1] - a[1]);
+    const dominanteKey = entries[0][0];
+    const labelByKey = {
+      costruttore: 'COSTRUTTORE',
+      cercatore:   'CERCATORE',
+      planner:     'PLANNER'
+    };
+    // trova lo span con il testo fisso e sostituiscilo
+    const titleSpan = document.getElementById('profileLabel');
+    if (titleSpan) titleSpan.textContent = labelByKey[dominanteKey] || 'PROFILO';
+
+    // 7) Aggiorna percentuali UI
+    document.getElementById('costruttore').textContent = values.costruttore + '%';
+    document.getElementById('cercatore').textContent   = values.cercatore + '%';
+    document.getElementById('planner').textContent     = values.planner + '%';
+
+    // 8) Inizializza Radar Chart
+    const canvas = document.getElementById('RadarChart');
+    const ctx = canvas.getContext('2d');
+
+    const chart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Costruttore', 'Planner', 'Cercatore'],
+        datasets: [{
+          label: 'Distribuzione',
+          data: [values.costruttore, values.planner, values.cercatore],
+          fill: true,
+          backgroundColor: 'rgba(54, 162, 235, 0.15)',
+          borderColor: 'rgba(54, 162, 235, 0.8)',
+          borderWidth: 2,
+          pointBackgroundColor: ['#E5B655', '#02356F', '#821F43'],
+          pointBorderColor: '#fff',
+          pointRadius: 0,
+          pointHoverRadius: 6,
+          pointBorderWidth: 2,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          r: {
+            min: 0, max: 100,
+            ticks: { display: false },
+            pointLabels: {
+              color: (ctx) => ['#E5B655', '#02356F', '#821F43'][ctx.index],
+              font: { family: 'Merriweather Sans', size: 16, weight: '700' },
+            },
+            grid: { display: false },
+            angleLines: { display: true, color: 'rgba(0,0,0,0.15)', lineWidth: 1.5 },
+          },
+        },
+      },
+    });
+
+    new ResizeObserver(() => chart.resize()).observe(canvas.parentElement);
+  });
+
+  document.getElementById('downloadPdf')?.addEventListener('click', () => {
+    // opzionale: flag per auto-stampa nel template
+    window.open('template.html?auto=1', '_blank');
+  });
+</script>
+
+<script type="module">
+  import { getState, setState, buildPayloadFromState, saveResponse } from './utils.js';
+
+  (async () => {
+    const state = getState();
+
+    // non inviare se mancano i risultati
+    if (!state?.results) return;
+
+    // evita doppio invio se ricarica la pagina
+    if (state?.saved === true) {
+      console.log('Già salvato: salto INSERT');
+      return;
+    }
+
+    const payload = buildPayloadFromState(state);
+    const { error } = await saveResponse(payload);
+
+    // se tutto ok → segna come salvato
+    if (!error) {
+      state.saved = true;
+      setState(state);
+    }
+  })();
+</script>
+
+</body>
+</html>

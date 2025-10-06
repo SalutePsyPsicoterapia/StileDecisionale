@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OrientaDiplomandi – Privacy Policy</title>
+
+  <!-- Tailwind via CDN (v4 browser build) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <!-- Stili di stampa: stampa SOLO il contenuto della policy -->
+  <style>
+    @media print {
+      body { background: #fff !important; margin: 0; }
+      .no-print { display: none !important; }
+      .print-area {
+        box-shadow: none !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        padding: 24px !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-blue-900 min-h-screen flex justify-center p-6">
+
+  <main class="w-full max-w-4xl">
+    <!-- Header + Azioni -->
+    <section class="no-print mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <h1 class="text-white text-3xl font-bold">Privacy Policy</h1>
+      <div class="flex gap-2">
+        <button id="btnPrint"
+                class="px-4 py-2 rounded bg-white/90 hover:bg-white text-blue-700 font-medium shadow">
+          Scarica PDF
+        </button>
+        <button id="btnTxt"
+                class="px-4 py-2 rounded bg-white/90 hover:bg-white text-blue-700 font-medium shadow">
+          Scarica .txt
+        </button>
+      </div>
+    </section>
+
+    <!-- Box contenuto -->
+    <article id="policy"
+             class="print-area w-full bg-white rounded-2xl p-8 shadow-lg prose prose-slate max-w-none">
+      <header class="border-b pb-4 mb-6">
+        <h2 class="text-2xl font-semibold mb-1">OrientaDiplomandi – Informativa privacy</h2>
+        <p class="text-sm text-slate-500">Ultimo aggiornamento: <span id="lastUpdate">24/09/2025</span></p>
+      </header>
+
+      <p class="mb-4">
+        La presente informativa descrive le modalità con cui <strong>SalutePsy s.r.l.</strong> raccoglie e tratta i dati personali forniti attraverso il questionario online relativo a <strong>OrientaDiplomandi</strong>.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">1. Titolare del trattamento</h3>
+      <p class="mb-4">
+        Titolare: <strong>SalutePsy s.r.l.</strong><br/>
+        Sede: <strong>Piazza dei Martiri 5/2</strong><br/>
+        Email: <strong>salutepsy@gmail.com</strong>
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">2. Tipologia di dati raccolti</h3>
+      <ul class="list-disc pl-6 mb-4">
+        <li><strong>Dati identificativi</strong>: nome, cognome.</li>
+        <li><strong>Dati di contatto</strong>: email.</li>
+        <li><strong>Informazioni generali</strong>: Azienda, Scuola frequentata</li>
+        <li><strong>Dati relativi alle risposte</strong>: opinioni, valutazioni o informazioni inserite nel questionario.</li>
+      </ul>
+      <p class="mb-4">
+        Non vengono raccolti dati appartenenti a categorie particolari (es. salute, origine etnica, opinioni politiche) salvo diversa indicazione esplicita e <em>ulteriore</em> consenso specifico.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">3. Finalità del trattamento</h3>
+      <ul class="list-disc pl-6 mb-4">
+        <li>Analisi delle risposte ai fini statistici e di ricerca.</li>
+        <li>Svolgimento del programma e completamento del percorso previsto per <strong>OrientaDiplomandi</strong>.</li>
+        <li>Gestione di eventuali percorsi personali legati a <strong>OrientaDiplomandi</strong>, solo se richiesto dall’utente.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">4. Base giuridica</h3>
+      <p class="mb-4">
+        Il trattamento si fonda sul <strong>consenso</strong> dell’utente (art. 6, par. 1, lett. a) GDPR). Per l’invio di comunicazioni promozionali/informative è richiesto un consenso separato e facoltativo.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">5. Modalità di trattamento</h3>
+      <ul class="list-disc pl-6 mb-4">
+        <li>Trattamento con strumenti elettronici e/o cartacei.</li>
+        <li>Adozione di misure tecniche e organizzative adeguate a garantire riservatezza, integrità e disponibilità.</li>
+        <li>Accesso limitato al personale autorizzato e formato.</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">6. Conservazione dei dati</h3>
+      <p class="mb-4">
+        I dati personali sono conservati per un periodo massimo di <strong>24 mesi</strong> dalla raccolta o fino a revoca del consenso, dopodiché vengono cancellati o anonimizzati.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">7. Comunicazione e destinatari</h3>
+      <p class="mb-4">
+        I dati non sono diffusi. Possono essere comunicati a fornitori che agiscono quali <strong>Responsabili del trattamento</strong> (es. servizi di hosting, piattaforme di questionari) sulla base di accordi conformi all’art. 28 GDPR, e ad autorità competenti nei casi previsti dalla legge.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">8. Trasferimenti extra-UE</h3>
+      <p class="mb-4">
+        Se i dati vengono trasferiti al di fuori dello Spazio Economico Europeo, il trasferimento avverrà nel rispetto del Capo V del GDPR (es. decisioni di adeguatezza, Clausole Contrattuali Standard). Informazioni dettagliate sono disponibili su richiesta.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">9. Diritti dell’interessato</h3>
+      <ul class="list-disc pl-6 mb-4">
+        <li>Accesso ai dati (art. 15 GDPR).</li>
+        <li>Rettifica (art. 16) e cancellazione (art. 17).</li>
+        <li>Limitazione (art. 18) e opposizione (art. 21).</li>
+        <li>Portabilità (art. 20), ove applicabile.</li>
+        <li>Revoca del consenso in qualsiasi momento (senza pregiudicare la liceità del trattamento precedente la revoca).</li>
+      </ul>
+      <p class="mb-4">
+        Per esercitare i diritti: <strong>salutepsy@gmail.com</strong>.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">10. Reclamo</h3>
+      <p class="mb-4">
+        L’interessato può proporre reclamo all’<strong>Autorità Garante per la Protezione dei Dati Personali</strong> (<em>www.garanteprivacy.it</em>) se ritiene che il trattamento violi la normativa applicabile.
+      </p>
+
+      <h3 class="text-xl font-semibold mt-8 mb-2">11. Consenso</h3>
+      <p class="mb-2">
+        Compilando e inviando il questionario, l’utente dichiara di aver letto la presente informativa e di acconsentire al trattamento dei propri dati personali per le finalità indicate. 
+      </p>
+
+      <footer class="border-t pt-4 mt-8 text-sm text-slate-500">
+        <p>Contatti: <strong>SalutePsy s.r.l. – salutepsy@gmail.com</strong></p>
+      </footer>
+    </article>
+
+    <!-- Richiamo veloce da inserire vicino al pulsante di invio del form (opzionale) -->
+    <section class="no-print mt-6 text-white/90 text-sm">
+    </section>
+  </main>
+
+  <script>
+    // 1) Scarica PDF: apre la finestra di stampa (gli utenti scelgono "Salva come PDF")
+    document.getElementById('btnPrint').addEventListener('click', () => {
+      window.print();
+    });
+
+    // 2) Scarica .txt: genera testo semplice dalla policy
+    document.getElementById('btnTxt').addEventListener('click', () => {
+      const el = document.getElementById('policy');
+      // prendi testo con minimi aggiustamenti (titoli + paragrafi)
+      const text = extractPlainText(el);
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'privacy-policy.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    function extractPlainText(node) {
+      // Converte i blocchi in testo leggibile, inserendo interlinea fra sezioni
+      let out = '';
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
+      let prevTag = '';
+
+      while (walker.nextNode()) {
+        const n = walker.currentNode;
+
+        if (n.nodeType === Node.ELEMENT_NODE) {
+          const tag = n.tagName.toLowerCase();
+
+          if (/h[1-6]/.test(tag)) {
+            out += (out.endsWith('\n') ? '' : '\n') + n.textContent.trim() + '\n';
+            prevTag = tag;
+            // salta discendenza auto-stampata; continuiamo
+          } else if (tag === 'p') {
+            out += (out.endsWith('\n') ? '' : '\n') + n.textContent.trim() + '\n';
+            prevTag = tag;
+          } else if (tag === 'li') {
+            out += '• ' + n.textContent.trim() + '\n';
+            prevTag = tag;
+          } else if (tag === 'ul' || tag === 'ol') {
+            // separatore tra liste
+            if (!out.endsWith('\n')) out += '\n';
+            prevTag = tag;
+          } else if (tag === 'br') {
+            out += '\n';
+          }
+        } else if (n.nodeType === Node.TEXT_NODE) {
+          // i TEXT_NODE sono già gestiti dai blocchi sopra
+        }
+      }
+      return out.trim() + '\n';
+    }
+  </script>
+</body>
+</html>

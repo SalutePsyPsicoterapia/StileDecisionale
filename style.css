@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;*/
+
+body { 
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+/* Nascondi scrollbar GLOBALMENTE ma lascia lo scroll funzionante */
+html, body {
+  -ms-overflow-style: none;  /* IE/vecchi Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera, Edge Chromium */
+}
+
+/* Utility per nascondere la scrollbar su un singolo container scrollabile */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;

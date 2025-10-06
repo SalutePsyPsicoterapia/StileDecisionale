@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>OrientaDiplomandi</title>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-blue-900 flex flex-col items-center min-h-screen">
+  <div class="w-full h-20 flex items-center justify-center gap-28 mt-6 mb-6">
+    <a href="https://www.salutepsy.it/" target="_blank">
+      <img src="Logo_sp_white.svg" alt="SalutePsy Logo" class="h-20">
+    </a>
+    <a href="https://www.talentsventure.com/" target="_blank">
+      <img src="logo_tv_white.svg" alt="Talents Venture Logo" class="h-12">
+    </a>
+  </div>
+
+  <div class="w-full max-w-4xl p-8 bg-white rounded-lg shadow-xl mb-20 flex flex-col">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Questionario per lo stile decisionale</h1>
+
+    <p class="text-start text-gray-500 mb-8 font-light text-sm">
+      <strong class="font-semibold">Nota:</strong> Questo questionario è pensato per aiutarti a riflettere su come affronti le decisioni importanti, come vivi l'ansia e lo stress scolastico, quando ti conosci e quanto ti senti pronto/a a scegliere il tuo futuro. <br>
+      <strong class="font-semibold">Non esiste un profilo giusto o sbagliato:</strong> ogni stile ha i suoi punti di forza e le sue fatiche. Rispondi con sincerità. <br>
+      <strong class="font-semibold">Il completamento del questionario prevede la risposta a tutte e 20 le domande. </strong>
+    </p>
+
+    <div class="p-2 rounded-md border border-gray-200 bg-gray-50 mb-6">
+      <p>Per ogni affermazione scegli la risposta che ti rappresenta di più:</p>
+      <ol class="list-inside list-[lower-alpha] space-y-1 text-gray-600">
+        <li>Sì, mi rappresenta</li>
+        <li>In parte</li>
+        <li>No, per niente</li>
+      </ol>
+    </div>
+
+    <form id="questionario" class="space-y-6">
+      <!-- Domanda 1 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          1. Mi sento pronto/a a scegliere il percorso universitario più adatto a me.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q1" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q1" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q1" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 2 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          2. Riesco a gestire l’ansia prima di interrogazioni, verifiche o esami.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q2" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q2" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q2" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 3 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          3. Sento di dover capire meglio chi sono prima di decidere cosa fare dopo la maturità.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q3" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q3" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q3" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 4 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          4. Mi sento ancora confuso/a su cosa voglio fare dopo il diploma.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q4" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q4" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q4" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 5 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          5. Quando non ho le idee chiare su cosa scegliere, tendo a rimandare.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q5" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q5" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q5" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 6 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          6. Anche nei periodi scolastici più intensi riesco a restare calmo/a.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q6" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q6" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q6" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 7 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          7. Faccio fatica a capire quale facoltà o ambito professionale sia davvero adatto a me.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q7" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q7" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q7" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 8 -->
+      <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+        <p class="font-medium text-gray-800 mb-3">
+          8. Conosco abbastanza i miei punti di forza e interessi da poter scegliere un percorso post-diploma.
+        </p>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q8" value="a" class="text-indigo-600" required>
+            <span>Sì, mi rappresenta</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q8" value="b" class="text-indigo-600">
+            <span>In parte</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="q8" value="c" class="text-indigo-600">
+            <span>No, per niente</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Domanda 9 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        9. Ho paura di sbagliare nella scelta universitaria e questo mi mette in difficoltà.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q9" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q9" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q9" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 10 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        10. Ho le idee chiare su quali materie o attività mi appassionano davvero.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q10" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q10" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q10" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 11 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        11. Mi capita spesso di sentirmi stanco/a o demotivato/a nei confronti dello studio.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q11" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q11" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q11" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 12 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        12. Sono in grado di organizzare bene il mio tempo per studiare e raggiungere gli obiettivi scolastici.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q12" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q12" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q12" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 13 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        13. A volte vorrei che qualcuno scegliesse al posto mio il mio futuro.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q13" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q13" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q13" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 14 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        14. Sento di essere in un momento della vita in cui sto ancora cercando di capire chi sono.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q14" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q14" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q14" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 15 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        15. Conosco tecniche o strategie per calmarmi quando mi sento agitato/a o sotto pressione.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q15" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q15" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q15" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 16 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        16. Ho bisogno di tempo per chiarirmi le idee su cosa voglio davvero per il mio futuro.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q16" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q16" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q16" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 17 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        17. Mi sento incapace di scegliere da solo/a il mio percorso dopo la scuola.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q17" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q17" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q17" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 18 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        18. Ho già un’idea abbastanza chiara di cosa voglio fare dopo il diploma.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q18" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q18" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q18" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 19 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        19. Temo di deludere le aspettative degli altri con le mie scelte sul futuro.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q19" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q19" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q19" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <!-- Domanda 20 -->
+    <div class="p-4 bg-gray-50 rounded-md shadow-sm">
+    <p class="font-medium text-gray-800 mb-3">
+        20. Riesco a riconoscere le emozioni che provo e a capire da dove vengono.
+    </p>
+    <div class="space-y-2">
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q20" value="a" class="text-indigo-600" required>
+        <span>Sì, mi rappresenta</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q20" value="b" class="text-indigo-600">
+        <span>In parte</span>
+        </label>
+        <label class="flex items-center gap-2">
+        <input type="radio" name="q20" value="c" class="text-indigo-600">
+        <span>No, per niente</span>
+        </label>
+    </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div>
+        <input type="checkbox" id="privacy-consent" required>
+        <label for="privacy-consent">
+          Acconsento al trattamento dei miei dati personali secondo la 
+          <a href="privacy.html" target="_blank" class="underline decoration-solid decoration-2 underline-offset-2">Privacy Policy.</a>
+        </label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="privacy-consent">
+        <label for="privacy-consent">
+          Acconsento a ricevere informazioni, news da parte di SalutePsy nel merito del progetto OrientaDiplomandi
+        </label>
+      </div>
+    </div>
+
+
+      <button type="submit"
+        class="w-full py-2 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-md 
+        hover:from-blue-600 hover:to-blue-700 
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+        transition-colors duration-200">
+        Invia risposte
+    </button>
+
+    </form>
+  </div>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const state = JSON.parse(localStorage.getItem('od.state') || '{}');
+    if (!state.user) {
+      window.location.href = 'index.html';
+      return;
+    }
+    
+  });
+
+  document.getElementById('questionario').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const answers = Object.fromEntries(new FormData(e.target).entries());
+
+    // carico lo stato esistente
+    const state = JSON.parse(localStorage.getItem('od.state') || '{}');
+    state.answers = answers;
+    state.ts = Date.now();
+
+    localStorage.setItem('od.state', JSON.stringify(state));
+    window.location.href = 'risultati.html';
+  });
+
+</script>
+
+</body>
+</html>
+
+
+

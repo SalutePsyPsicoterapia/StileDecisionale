@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @page {
+            size: A4;
+            margin: 0mm;
+        }
+       /* Forza i colori in stampa */
+        @media print {
+            * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            }
+            html, body { background: #fff !important; }
+        }
+    </style>
+    <title>OrientaDiplomandi</title>
+</head>
+<body>
+    <div class="w-[210mm] min-h-[297mm] mx-auto bg-white shadow-md box-content flex flex-col">
+        <img src="copertina_restituzione.svg" class="absolute inset-0 w-full h-full object-cover" alt="Copertina Restituzione">
+    </div>
+    
+    <div class="[break-before:page] w-[210mm] min-h-[297mm] mx-auto bg-white shadow-md box-content flex flex-col">
+        <div class="bg-[#02356F] h-[60px] flex justify-between items-center px-5 text-white font-light">
+            <h1>OrientaDiplomandi - Talents Venture</h1>
+            <h1 id="data"></h1>
+        </div>
+        <div class="flex flex-col text-center mx-5 mt-5 font-semibold gap-3">
+            <p class="text-xl"><span class="font-extrabold" id="fullName"></span>, da quanto emerso dalle tue risposte al questionario, il tuo stile prevalente* è il</p>
+            <span id="stile" data-styled-text class="font-extrabold text-5xl"></span>
+        </div>
+        <div id="risposteDisplay" class="m-5 h-[250px] rounded-xl flex gap-2">
+            <img id="stileImmagine" src="" alt="Illustrazione stile" class="size-[250px] rounded-l-xl">
+            <div class="w-full m-[10px] p-2 flex flex-col items-center gap-1">
+                <p data-styled-text class="font-bold text-xl mb-2">LE TUE RISPOSTE</p>
+                <div data-styled-text class="w-full h-full" id="risposte"></div>
+            </div>
+        </div>
+        <div class="h-[80px] mx-5 flex flex-row gap-3">
+            <div class="border w-full rounded-lg bg-[#FFF5D1] border-[#E5B655] text-[#E5B655] text-center text-xl p-1">
+                <p>COSTRUTTORE</p>
+                <span id="valoreCreatore"></span>
+            </div>
+            <div class="border w-full rounded-lg bg-[#FFD2CE] border-[#821F43] text-[#821F43] text-center text-xl p-1">
+                <p>CERCATORE</p>
+                <span id="valoreCercatore"></span>
+            </div>
+            <div class="border w-full rounded-lg bg-[#CDE4FE] border-[#02356F] text-[#02356F] text-center text-xl p-1">
+                <p>PLANNER</p>
+                <span id="valorePianificatore"></span>
+            </div>
+        </div>
+        <div class="m-5 flex-grow flex flex-col gap-2">
+            <div class="p-2 flex flex-col gap-4">
+                <p id="stileDescrizione" class="text-center"></p>
+                <div class="flex flex-row gap-2 ">
+                    <div class="border border-green-600 w-1/2 rounded-lg p-2">
+                        <p class="mb-2 font-bold">Alcuni tuoi punti di forza:</p>
+                        <ul id="forza" class="list-disc pl-5 space-y-1 text-sm"></ul>
+                    </div>
+                    <div class="border border-red-600 w-1/2 rounded-lg p-2">
+                        <p class="mb-2 font-bold">Alcuni possibili ostacoli: </p>
+                        <ul id="debolezze" class="list-disc pl-5 space-y-1 text-sm"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-grow  rounded-lg p-2 flex flex-col gap-4">
+              <div>
+                <p class="font-bold mb-2">Alcuni consigli per te:</p>
+                <ul id="consigli" class="list-disc pl-5 space-y-1 text-sm"></ul>
+              </div>
+              <div> 
+                <p class="font-bold mb-2">Il percorso ideale per te:</p>
+                <p id="predisposizione" class="text-sm"></p>
+              </div>
+            </div>
+            <p class="font-light text-gray-400 text-[12px] leading-tight">I dati presentati in questo documento verranno poi presentati e spiegati durante il webinar da SalutePsy, ti invitiamo a conservare questo foglio.
+            <br>*Ogni profilo prevede una combinazione, in percentuali diverse, dei tre stili.</p>
+        </div>
+        <div class="h-[60px] bg-[#02356F] flex px-5 text-white items-center justify-between">
+            <div class="flex gap-5">
+                <img src="Logo_sp_white.svg" alt="">
+                <img src="logo_tv_white.svg" alt="">
+            </div>
+            <div class="text-[12px]">
+                <p>www.salutepsy.it</p>
+                <p>www.talentsventure.com</p>
+            </div>
+        </div>
+
+    </div>
+   <script>
+const STYLE_MAP = {
+  CERCATORE: {
+    bgClass: 'bg-[#FFCDC8]', textClass: 'text-[#821F43]',
+    bgHex: '#FFCDC8', textHex: '#821F43',borderHex: '#821F43',
+    img: 'img/cercatore.png',
+    descrizione: '“La direzione giusta è quella che risuona con ciò che sei.”',
+    forza: ["Creativo, curioso e aperto","Guida le scelte con valori ed emozioni autentiche","Sensibile e attento alle relazioni"],
+    debolezze: [
+      'Rischio di dispersione e indecisione',
+      'Vulnerabile all’ansia quando mancano riferimenti concreti',
+      'Può idealizzare senza verificare la realtà'
+    ],
+    consigli: [
+      "Traduci i tuoi valori in criteri concreti e osservabili",
+      "Usa micro-esperienze (stage, volontariato, progetti) per testare le scelte"
+    ],
+    predisposizione: ['Ambiti dove contano identità e creatività: umanistico, artistico, sociale, comunicazione, psicologia, design.']
+  },
+  COSTRUTTORE: {
+    bgClass: 'bg-[#FFF5D1]', textClass: 'text-[#E5B655]',
+    bgHex: '#FFF5D1', textHex: '#E5B655', borderHex: '#E5B655',
+    img: 'img/costruttore.png',
+    descrizione: '“Agire è il modo più rapido per scoprire la strada.”',
+    forza: ['Pragmatico e orientato al risultato','Impara facendo e decide rapidamente','Spirito di iniziativa e adattabilità'],
+    debolezze: [
+      'Rischio di impulsività e visione troppo breve',
+      'Difficoltà a fermarsi e riflettere',
+      'Tende a trascurare l’impatto emotivo delle scelte'
+    ],
+    consigli: [
+      "Inserisci momenti di verifica periodica per valutare effetti a medio termine",
+      "Confrontati con feedback esterni prima di scelte decisive"
+    ],
+    predisposizione: [
+      "Percorsi pratici, dinamici e tecnici: informatica, professioni tecniche, sanitarie operative, imprenditoria."
+    ]
+  },
+  PLANNER: {
+    bgClass: 'bg-[#364F66]', textClass: 'text-[#CDE4FE]',
+    bgHex: '#364F66', textHex: '#CDE4FE', borderHex: '#CDE4FE',
+    img: 'img/planner.png',
+    descrizione: '“Ogni passo è pensato, perché la sicurezza nasce dall’ordine.”',
+    forza: ['Organizzato, metodico e preciso','Forte capacità di pianificazione e analisi','Affidabile e orientato agli obiettivi'],
+    debolezze: [
+      "Rischio di rigidità e perfezionismo", 
+      "Paura di sbagliare → indecisione o ritardi",
+      "Fatica ad adattarsi agli imprevisti"
+    ],
+    consigli:[
+      "Fissa una deadline per fermare l’overthinking",
+      "Impara a tollerare piccole dosi di incertezza come palestra di flessibilità"
+    ],
+    predisposizione:[
+      "Facoltà e professioni con percorsi chiari e lineari: ingegneria, economia, medicina, professioni regolamentate."
+    ]
+  }
+};
+
+function renderList(targetId, items = []) {
+  const ul = document.getElementById(targetId);
+  if (!ul) return;
+  const nodes = (items||[]).filter(Boolean).map(t => {
+    const li = document.createElement('li'); li.textContent = t; return li;
+  });
+  ul.replaceChildren(...nodes);
+}
+
+function applyDominantStyle(stileKey) {
+  const cfg = STYLE_MAP[stileKey] || STYLE_MAP.COSTRUTTORE;
+
+  // testi colorati
+  document.querySelectorAll('[data-styled-text]').forEach(el => {
+    Object.values(STYLE_MAP).forEach(s => el.classList.remove(s.textClass));
+    el.classList.add(cfg.textClass);
+    el.style.color = cfg.textHex; // fallback
+  });
+
+  // Bordi colorati
+  document.querySelectorAll('[data-styled-border]').forEach(el => {
+    el.style.borderColor = cfg.borderHex;   // per Planner diventa #364F66
+  });
+
+  // box principale
+  const box = document.getElementById('risposteDisplay');
+  if (box) {
+    Object.values(STYLE_MAP).forEach(s => box.classList.remove(s.bgClass));
+    box.classList.add(cfg.bgClass);
+    box.style.backgroundColor = cfg.bgHex; // fallback
+  }
+
+  // immagine
+  const img = document.getElementById('stileImmagine');
+  if (img) { img.src = cfg.img; img.alt = `Illustrazione stile ${stileKey}`; }
+
+  // testi/lista
+  document.getElementById('stileDescrizione')?.replaceChildren(cfg.descrizione);
+  renderList('forza', cfg.forza);
+  renderList('debolezze', cfg.debolezze);
+  renderList('consigli', cfg.consigli);
+  document.getElementById('predisposizione').replaceChildren(cfg.predisposizione);
+}
+
+function normalizeValues(results) {
+  const v = {
+    costruttore: Number(results?.costruttore ?? 0),
+    cercatore:   Number(results?.cercatore   ?? 0),
+    planner:     Number(results?.planner     ?? 0),
+  };
+  const s = Math.max(v.costruttore + v.cercatore + v.planner, 1);
+  v.costruttore = Math.round(v.costruttore/s*100);
+  v.cercatore   = Math.round(v.cercatore/s*100);
+  v.planner     = 100 - v.costruttore - v.cercatore;
+  return v;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Stato condiviso
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem('od.state') || '{}'); } catch {}
+
+  if (!state.user || !state.user.nome) { location.href = 'index.html'; return; }
+
+  const values = normalizeValues(state.results || {});
+  const dominanteKey = Object.entries(values).sort((a,b)=>b[1]-a[1])[0][0]; // 'costruttore' | 'cercatore' | 'planner'
+  const LABEL = { costruttore:'COSTRUTTORE', cercatore:'CERCATORE', planner:'PLANNER' };
+
+  const fullName = [state.user.nome, state.user.cognome].filter(Boolean).join(' ');
+  const today = new Date().toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric'});
+
+  // Riempimento
+  document.getElementById('fullName')?.replaceChildren(fullName);
+  (document.getElementById('reportDate') || document.getElementById('data'))?.replaceChildren(today);
+  document.getElementById('stile')?.replaceChildren(LABEL[dominanteKey] || '—');
+
+  document.getElementById('valoreCreatore')?.replaceChildren(values.costruttore + '%');
+  document.getElementById('valoreCercatore')?.replaceChildren(values.cercatore + '%');
+  document.getElementById('valorePianificatore')?.replaceChildren(values.planner + '%');
+
+  // Applica stile dominante (usa chiave maiuscola della mappa)
+  const mapKey = LABEL[dominanteKey]; // es. 'COSTRUTTORE'
+  applyDominantStyle(mapKey);
+
+  // Auto-stampa se vuoi (da param)
+  const params = new URLSearchParams(location.search);
+  if (params.get('auto') === '1') {
+    const closeAfterPrint = () => setTimeout(() => { try{ window.close(); }catch(e){} }, 200);
+    window.addEventListener('afterprint', closeAfterPrint);
+    const mql = window.matchMedia && window.matchMedia('print');
+    if (mql && mql.addListener) mql.addListener(e => { if (!e.matches) closeAfterPrint(); });
+    requestAnimationFrame(() => window.print());
+  }
+
+  function orderAnswers(ans) {
+  // Restituisce [[1,'a'], [2,'b'], ...] in ordine crescente
+  if (!ans) return [];
+  if (Array.isArray(ans)) {
+    return ans.map((v, i) => [i + 1, (v || '').toString().trim()]);
+  }
+  // Oggetto: prova a estrarre il numero dalla chiave (es. "q1", "1", "domanda_12")
+  const entries = Object.entries(ans).map(([k, v]) => {
+    const m = String(k).match(/\d+/);
+    const idx = m ? parseInt(m[0], 10) : Number.isFinite(+k) ? +k : null;
+    return [idx, (v || '').toString().trim()];
+  }).filter(([i]) => i != null);
+  entries.sort((a, b) => a[0] - b[0]);
+  return entries;
+}
+
+  function renderAnswersInline(containerId, ans) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    const list = orderAnswers(ans);
+    // es. "1.a 2.b 3.b ..."
+    
+    const ol = document.createElement('ol');
+    // 4 colonne, spazi stretti, adatta anche in stampa
+    ol.className = 'grid grid-cols-4 gap-x-8 gap-y-2 text-sm leading-tight print:text-sm w-fit mx-auto';
+
+    list.forEach(([i, v]) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${i}.${String(v).toLowerCase()}</span>`;
+        ol.appendChild(li);
+    });
+
+    el.replaceChildren(ol);
+    
+    }
+
+    renderAnswersInline('risposte', state.answers || []);
+
+
+});
+</script>
+
+</html>
