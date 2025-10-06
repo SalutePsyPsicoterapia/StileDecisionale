@@ -4,7 +4,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 // 🔧 CONFIGURA QUI
 export const supabase = createClient(
   'https://mtaswzwpoyjfgbxvroxi.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10YXN3endwb3lqZmdieHZyb3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0ODMxMzEsImV4cCI6MjA3NTA1OTEzMX0.GJsLdv9ZRGfJ6LFqz-SLxqC3ooQ7XXLMXy5ZAfv0-tw'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10YXN3endwb3lqZmdieHZyb3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0ODMxMzEsImV4cCI6MjA3NTA1OTEzMX0.GJsLdv9ZRGfJ6LFqz-SLxqC3ooQ7XXLMXy5ZAfv0-tw',
   {
     auth: {
       persistSession: false,
@@ -58,4 +58,5 @@ export async function saveResponse(payload) {
   }
   return { data, error, status };
 }
+
 
