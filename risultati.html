@@ -145,7 +145,7 @@
   <!-- Unica inclusione Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 
-<script>
+<script type="module">
   // Conta A/B/C e restituisce percentuali (arrotondate) per i tre profili
   function calcolaRisultati(answers) {
     let countA = 0, countB = 0, countC = 0;
@@ -168,7 +168,7 @@
     };
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     // 1) Leggi stato unico
     const state = JSON.parse(localStorage.getItem('od.state') || '{}');
 
@@ -297,4 +297,5 @@
 </body>
 
 </html>
+
 
