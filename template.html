@@ -171,23 +171,27 @@
     display: block !important;
   }
 }
-/* --- Safari/iOS ONLY: centratura + risposte --- */
+/* --- Safari/iOS ONLY: centratura della pagina + layout risposte --- */
 @supports (-webkit-touch-callout: none) {
   @media print {
-    /* 1️⃣ CENTRATURA E SCALA */
-    html, body {
-      height: 100%;
-      text-align: center !important;
+
+    /* 1️⃣ CENTRA SOLO LA PAGINA, non i contenuti */
+    body {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center !important;  /* centra orizzontalmente */
+      justify-content: flex-start !important;
       background: #fff !important;
+      text-align: left !important;     /* reset: non centrare i testi interni */
     }
+
     .page {
-      display: inline-block !important;
       transform: scale(0.78) !important;
       transform-origin: top center !important;
       margin: 0 auto !important;
     }
 
-    /* 2️⃣ RISPOSTE A 4 COLONNE */
+    /* 2️⃣ RISPOSTE A 4 COLONNE STABILI */
     .answers-list {
       display: block !important;
       column-count: 4 !important;
@@ -208,13 +212,13 @@
       text-align: center;
     }
 
-    /* 3️⃣ MANTIENI SALTI PAGINA */
+    /* 3️⃣ SALTO PAGINA TRA LE PAGINE */
     .page + .page {
       page-break-before: always !important;
       break-before: page !important;
     }
 
-    /* 4️⃣ NON spegnere la nostra griglia */
+    /* 4️⃣ NON spegnere la nostra griglia principale */
     .grid:not(.answers-list):not(.layout-ok),
     .columns,
     [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) {
@@ -222,6 +226,7 @@
     }
   }
 }
+
 
 
   
@@ -482,6 +487,7 @@
   </script>
 </body>
 </html>
+
 
 
 
