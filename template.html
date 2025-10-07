@@ -7,17 +7,17 @@
   <link rel="stylesheet" href="style.css">
   <title>OrientaDiplomandi</title>
 
-  <!-- Opzione rapida (CDN Google Fonts). Se usi content blocker, self-host qui sotto -->
+  <!-- Font (CDN) -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300..800&display=swap" rel="stylesheet">
 
   <style>
-    /* Self-host consigliato (metti il file in /fonts/). Mantieni anche il link GF come fallback se vuoi. */
+    /* (Opzionale) Self-host come fallback */
     @font-face {
       font-family: "Merriweather Sans";
       src: url("/fonts/MerriweatherSans-VariableFont_wght.woff2") format("woff2");
       font-weight: 300 800;
       font-style: normal;
-      font-display: block; /* evita rimpiazzi in stampa */
+      font-display: block;
     }
 
     /* --- Impostazioni pagina --- */
@@ -73,168 +73,105 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* --- STAMPA: regole dure per Chrome/iOS --- */
-@media print {
-  .page-content {
-    box-shadow: none !important;
-    width: 210mm !important;
-    min-height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #fff !important;
-    overflow: visible !important;
-    page-break-after: always !important;
-    break-after: page !important;
-    -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-  }
+    /* --- STAMPA: regole dure per Chrome/iOS (baseline) --- */
+    @media print {
+      .page-content {
+        box-shadow: none !important;
+        width: 210mm !important;
+        min-height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        overflow: visible !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+      }
 
-  /* evita bug di Chrome con object-fit: cover sugli <img> */
-  .cover-media {
-    display: block !important;
-    width: 210mm !important;
-    height: 297mm !important;
-    object-fit: contain !important;  /* contain è più stabile in print */
-    object-position: center center !important;
-    background: none !important;
-    visibility: visible !important;
-  }
-  
-  /* assicurati che il contenitore non "nasconda" nulla */
-  .page-cover {
-    height: 297mm !important;
-    overflow: visible !important;    
-    -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-  }
-  
-  /* fallback: background statico */
-  .page-cover.use-bg .cover-media { display: none !important; }
-  .page-cover.use-bg {
-    background-repeat: no-repeat !important;
-    background-position: center center !important;
-    background-size: contain !important;
-  }
+      /* Copertina: evita bug con object-fit: cover sugli <img> */
+      .cover-media {
+        display: block !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        object-fit: contain !important;   /* più stabile in print */
+        object-position: center center !important;
+        background: none !important;
+        visibility: visible !important;
+      }
+      .page-cover {
+        height: 297mm !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+      }
+      .page-cover.use-bg .cover-media { display: none !important; }
+      .page-cover.use-bg {
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        background-size: contain !important;
+      }
 
-  /* iOS/Chrome: niente fixed/absolute in stampa */
-  *[style*="position:fixed"], *[style*="position:absolute"] { position: static !important; }
-  header, footer, .fixed, .sticky { position: static !important; }
+      /* Niente fixed/absolute in stampa */
+      *[style*="position:fixed"], *[style*="position:absolute"] { position: static !important; }
+      header, footer, .fixed, .sticky { position: static !important; }
 
-  html, body { background: #fff !important; }
+      html, body { background: #fff !important; }
 
-  /* Forza colori e font */
-  * {
-    -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-    font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
-                 Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  }
+      /* Forza colori e font */
+      * {
+        -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+        font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                     Roboto, "Helvetica Neue", Arial, sans-serif !important;
+      }
 
-  /* Ogni .page dopo la prima inizia su pagina nuova */
-  .page + .page { page-break-before: always; break-before: page; }
+      /* Ogni .page dopo la prima inizia su pagina nuova */
+      .page + .page { page-break-before: always; break-before: page; }
 
-  /* ✅ Layout risposte a colonne (Chrome ok, Safari ancora no) */
-  .answers-list {
-    display: block !important;
-    column-count: 4 !important;
-    column-gap: 8mm !important;
-    width: 100% !important;
-    margin: 0 !important;
-  }
-  .answers-list > li {
-    display: inline-block !important;
-    width: 100% !important;
-    margin: 0 0 2mm 0 !important;
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-  .answers-list [data-styled-border]{
-    display:inline-block !important;
-    min-width: 20mm;
-    text-align: center;
-  }
+      /* Evita tagli interni su elementi sensibili */
+      .card, .section, table, tr, img, svg, h2, h3, p {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
 
-  /* Evita tagli interni */
-  .card, .section, table, tr, img, svg, h2, h3, p {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
+      /* Ombre/transform alterano i box in stampa */
+      [style*="transform"] { transform: none !important; }
+      .shadow, [class*="shadow-"] { box-shadow: none !important; }
 
-  /* Ombre/transform alterano i box in stampa */
-  [style*="transform"] { transform: none !important; }
-  .shadow, [class*="shadow-"] { box-shadow: none !important; }
-
-  /* --- questa riga DEVE STARE ALLA FINE --- */
-  .grid:not(.answers-list):not(.layout-ok),
-  .columns,
-  [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) {
-    display: block !important;
-  }
-}
-/* Safari / iOS only: pagina “vera” a 78% (senza transform) */
-@supports (-webkit-touch-callout: none) {
-  @media print {
-    /* restringi il canvas di contenuto, non la pagina A4 */
-    .page,
-    .page-content {
-      width: 163.8mm !important;         /* 210mm * 0.78 */
-      min-height: 231.66mm !important;   /* 297mm * 0.78 */
-      margin: 0 auto !important;         /* centrata */
-      box-sizing: border-box !important;
+      /* Spegni altre grid potenzialmente “fragili” (NON tocca le nostre viste) */
+      .grid:not(.answers-grid-view):not(.layout-ok),
+      .columns,
+      [class*="grid-cols-"]:not(.answers-grid-view):not(.layout-ok) {
+        display: block !important;
+      }
     }
 
-    /* copertina coerente */
-    .page-cover { height: 231.66mm !important; }
-    .cover-media {
-      width: 163.8mm !important;
-      height: 231.66mm !important;
-      object-fit: contain !important;
+    /* --- SOLO Safari/iOS in stampa: usa vista alternativa a 4 colonne --- */
+    @supports (-webkit-touch-callout: none) {
+      @media print {
+        /* Nascondi la grid in stampa su Safari */
+        .answers-grid-view { display: none !important; }
+
+        /* Mostra la versione alternativa: 4 colonne stabili via inline-block */
+        .answers-print-table {
+          display: block !important;
+          width: 100% !important;
+          font-size: 0;                 /* elimina spazi tra inline-block */
+          text-align: center;
+          margin: 0 auto !important;
+        }
+        .answers-print-table [data-styled-border]{
+          display: inline-block !important;
+          width: 23% !important;        /* 4 per riga con margine */
+          margin: 2mm 0.5% !important;
+          font-size: 12px !important;   /* reset font */
+          vertical-align: top !important;
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
+        }
+      }
     }
-
-    /* mantieni il salto pagina */
-    .page + .page { page-break-before: always !important; break-before: page !important; }
-
-    /* NON spegnere la nostra lista; spegni le altre grid */
-    .grid:not(.answers-list):not(.layout-ok),
-    .columns,
-    [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) { display: block !important; }
-  }
-}
-/* --- Safari/iOS: fix stampa griglia risposte --- */
-@media print {
-  /* Nascondi la vista a griglia, mostra quella alternativa */
-  .answers-grid-view { display: none !important; }
-
-  /* Fallback universale: layout 4 colonne via inline-block */
-  .answers-print-table {
-    display: block !important;
-    width: 100% !important;
-    font-size: 0; /* evita spazi tra gli inline-block */
-    text-align: center;
-    margin: 0 auto !important;
-  }
-
-  .answers-print-table span[data-styled-border] {
-    display: inline-block !important;
-    width: 23% !important;       /* 4 colonne per riga */
-    margin: 2mm 0.5% !important; /* spazio regolare */
-    font-size: 12px !important;  /* reset del font */
-    vertical-align: top !important;
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  /* Non serve nessun tr/td visibile */
-  .answers-print-table table,
-  .answers-print-table tr,
-  .answers-print-table td {
-    all: unset !important;
-  }
-}
-
-
-  
-
   </style>
 </head>
 
@@ -259,7 +196,7 @@
       <span id="stile" data-styled-text class="font-extrabold text-5xl"></span>
     </div>
 
-    <div id="risposteDisplay" class="m-5 h-[250px] rounded-xl flex gap-2">
+    <div id="risposteDisplay" class="m-5 rounded-xl flex gap-2">
       <img id="stileImmagine" src="" alt="Illustrazione stile" class="size-[250px] rounded-l-xl">
       <div class="w-full m-[10px] p-2 flex flex-col items-center gap-1">
         <p data-styled-text class="font-bold text-xl mb-2">LE TUE RISPOSTE</p>
@@ -267,7 +204,7 @@
       </div>
     </div>
 
-    <div class="h-[80px] mx-5 flex flex-row gap-3">
+    <div class="mx-5 flex flex-row gap-3">
       <div class="border w-full rounded-lg bg-[#FFF5D1] border-[#E5B655] text-[#E5B655] text-center text-xl p-1">
         <p>COSTRUTTORE</p>
         <span id="valoreCreatore"></span>
@@ -373,31 +310,26 @@
     function applyDominantStyle(stileKey) {
       const cfg = STYLE_MAP[stileKey] || STYLE_MAP.COSTRUTTORE;
 
-      // testi colorati
       document.querySelectorAll('[data-styled-text]').forEach(el => {
         Object.values(STYLE_MAP).forEach(s => el.classList.remove(s.textClass));
         el.classList.add(cfg.textClass);
-        el.style.color = cfg.textHex; // fallback
+        el.style.color = cfg.textHex;
       });
 
-      // Bordi colorati
       document.querySelectorAll('[data-styled-border]').forEach(el => {
         el.style.borderColor = cfg.borderHex;
       });
 
-      // box principale
       const box = document.getElementById('risposteDisplay');
       if (box) {
         Object.values(STYLE_MAP).forEach(s => box.classList.remove(s.bgClass));
         box.classList.add(cfg.bgClass);
-        box.style.backgroundColor = cfg.bgHex; // fallback
+        box.style.backgroundColor = cfg.bgHex;
       }
 
-      // immagine
       const img = document.getElementById('stileImmagine');
       if (img) { img.src = cfg.img; img.alt = `Illustrazione stile ${stileKey}`; }
 
-      // testi/lista
       document.getElementById('stileDescrizione')?.replaceChildren(cfg.descrizione);
       renderList('forza', cfg.forza);
       renderList('debolezze', cfg.debolezze);
@@ -431,7 +363,6 @@
       const fullName = [state.user.nome, state.user.cognome].filter(Boolean).join(' ');
       const today = new Date().toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric'});
 
-      // Riempimento
       document.getElementById('fullName')?.replaceChildren(fullName);
       (document.getElementById('reportDate') || document.getElementById('data'))?.replaceChildren(today);
       document.getElementById('stile')?.replaceChildren(LABEL[dominanteKey] || '—');
@@ -440,16 +371,12 @@
       document.getElementById('valoreCercatore')?.replaceChildren(values.cercatore + '%');
       document.getElementById('valorePianificatore')?.replaceChildren(values.planner + '%');
 
-      // Applica stile dominante
-      const mapKey = LABEL[dominanteKey];
-      applyDominantStyle(mapKey);
+      applyDominantStyle(LABEL[dominanteKey]);
 
-      // Lista risposte (4 colonne a schermo via grid; in stampa via columns)
+      /* --------- RENDER RISPOSTE (grid per schermo/Chrome, inline-block per stampa Safari) --------- */
       function orderAnswers(ans) {
         if (!ans) return [];
-        if (Array.isArray(ans)) {
-          return ans.map((v, i) => [i + 1, (v || '').toString().trim()]);
-        }
+        if (Array.isArray(ans)) return ans.map((v, i) => [i + 1, (v || '').toString().trim()]);
         const entries = Object.entries(ans).map(([k, v]) => {
           const m = String(k).match(/\d+/);
           const idx = m ? parseInt(m[0], 10) : Number.isFinite(+k) ? +k : null;
@@ -460,47 +387,33 @@
       }
 
       function renderAnswersInline(containerId, ans) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
+        const el = document.getElementById(containerId);
+        if (!el) return;
 
-  const list = orderAnswers(ans); // puoi tenere la tua orderAnswers
+        const list = orderAnswers(ans);
 
-  // --- Vista GRID per schermo/Chrome ---
-  const ol = document.createElement('ol');
-  ol.className = 'answers-grid-view grid grid-cols-4 gap-x-8 gap-y-2 text-sm leading-tight w-fit mx-auto';
-  list.forEach(([i, v]) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${i}.${String(v).toLowerCase()}</span>`;
-    ol.appendChild(li);
-  });
+        // Vista GRID per schermo/Chrome
+        const grid = document.createElement('ol');
+        grid.className = 'answers-grid-view grid grid-cols-4 gap-x-8 gap-y-2 text-sm leading-tight w-fit mx-auto';
+        list.forEach(([i, v]) => {
+          const li = document.createElement('li');
+          li.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${i}.${String(v).toLowerCase()}</span>`;
+          grid.appendChild(li);
+        });
 
-  // --- Vista TABELLA per stampa/Safari ---
-  const table = document.createElement('table');
-  table.className = 'answers-print-table';
-  const tbody = document.createElement('tbody');
+        // Vista ALTERNATIVA per stampa Safari (inline-block 4 colonne)
+        const printAlt = document.createElement('div');
+        printAlt.className = 'answers-print-table';
+        list.forEach(([i, v]) => {
+          const chip = document.createElement('span');
+          chip.setAttribute('data-styled-border', '');
+          chip.className = 'rounded-md px-2 py-0.5 border w-14 text-center inline-block';
+          chip.textContent = `${i}.${String(v).toLowerCase()}`;
+          printAlt.appendChild(chip);
+        });
 
-  const COLS = 4;
-  for (let r = 0; r < Math.ceil(list.length / COLS); r++) {
-    const tr = document.createElement('tr');
-    for (let c = 0; c < COLS; c++) {
-      const td = document.createElement('td');
-      const item = list[r * COLS + c];
-      if (item) {
-        const [idx, val] = item;
-        td.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${idx}.${String(val).toLowerCase()}</span>`;
-      } else {
-        td.innerHTML = '&nbsp;';
+        el.replaceChildren(grid, printAlt);
       }
-      tr.appendChild(td);
-    }
-    tbody.appendChild(tr);
-  }
-  table.appendChild(tbody);
-
-  // Monta entrambe le viste
-  el.replaceChildren(ol, table);
-}
-
 
       renderAnswersInline('risposte', state.answers || []);
 
@@ -517,14 +430,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
