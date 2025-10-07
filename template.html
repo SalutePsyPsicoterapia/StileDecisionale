@@ -171,59 +171,33 @@
     display: block !important;
   }
 }
-/* --- Safari/iOS ONLY: centratura della pagina + layout risposte --- */
+/* Safari / iOS only: pagina “vera” a 78% (senza transform) */
 @supports (-webkit-touch-callout: none) {
   @media print {
-
-    /* 1️⃣ CENTRA SOLO LA PAGINA, non i contenuti */
-    body {
-      display: flex !important;
-      flex-direction: column;
-      align-items: center !important;  /* centra orizzontalmente */
-      justify-content: flex-start !important;
-      background: #fff !important;
-      text-align: left !important;     /* reset: non centrare i testi interni */
+    /* restringi il canvas di contenuto, non la pagina A4 */
+    .page,
+    .page-content {
+      width: 163.8mm !important;         /* 210mm * 0.78 */
+      min-height: 231.66mm !important;   /* 297mm * 0.78 */
+      margin: 0 auto !important;         /* centrata */
+      box-sizing: border-box !important;
     }
 
-    .page {
-      /*transform: scale(0.78) !important;*/
-      transform-origin: top center !important;
-      margin: 0 auto !important;
+    /* copertina coerente */
+    .page-cover { height: 231.66mm !important; }
+    .cover-media {
+      width: 163.8mm !important;
+      height: 231.66mm !important;
+      object-fit: contain !important;
     }
 
-    /* 2️⃣ RISPOSTE A 4 COLONNE STABILI */
-    .answers-list {
-      display: block !important;
-      column-count: 4 !important;
-      column-gap: 8mm !important;
-      width: 100% !important;
-      margin: 0 auto !important;
-    }
-    .answers-list > li {
-      display: inline-block !important;
-      width: 100% !important;
-      margin: 0 0 2mm 0 !important;
-      break-inside: avoid !important;
-      page-break-inside: avoid !important;
-    }
-    .answers-list [data-styled-border] {
-      display: inline-block !important;
-      min-width: 20mm;
-      text-align: center;
-    }
+    /* mantieni il salto pagina */
+    .page + .page { page-break-before: always !important; break-before: page !important; }
 
-    /* 3️⃣ SALTO PAGINA TRA LE PAGINE */
-    .page + .page {
-      page-break-before: always !important;
-      break-before: page !important;
-    }
-
-    /* 4️⃣ NON spegnere la nostra griglia principale */
+    /* NON spegnere la nostra lista; spegni le altre grid */
     .grid:not(.answers-list):not(.layout-ok),
     .columns,
-    [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) {
-      display: block !important;
-    }
+    [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) { display: block !important; }
   }
 }
 
@@ -487,6 +461,7 @@
   </script>
 </body>
 </html>
+
 
 
 
