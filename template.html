@@ -171,6 +171,27 @@
     display: block !important;
   }
 }
+/* iOS/Safari only: stampa al ~78% */
+@supports (-webkit-touch-callout: none) {
+  @media print {
+    /* Scala VISIVAMENTE ogni pagina (copertina + contenuti) */
+    .page {
+      transform: scale(0.78);
+      transform-origin: top center;
+    }
+
+    /* Assicurati che lo spazio pagina non tagli nulla */
+    .page, .page-content {
+      overflow: visible !important;
+    }
+
+    /* Mantieni il salto pagina tra .page */
+    .page + .page {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+  }
+}
 
   
 
@@ -430,6 +451,7 @@
   </script>
 </body>
 </html>
+
 
 
 
