@@ -430,21 +430,47 @@
       }
 
       function renderAnswersInline(containerId, ans) {
-        const el = document.getElementById(containerId);
-        if (!el) return;
-        const list = orderAnswers(ans);
+  const el = document.getElementById(containerId);
+  if (!el) return;
 
-        const ol = document.createElement('ol');
-        ol.className = 'answers-list text-sm leading-tight w-fit mx-auto';
+  const list = orderAnswers(ans); // puoi tenere la tua orderAnswers
 
-        list.forEach(([i, v]) => {
-          const li = document.createElement('li');
-          li.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${i}.${String(v).toLowerCase()}</span>`;
-          ol.appendChild(li);
-        });
+  // --- Vista GRID per schermo/Chrome ---
+  const ol = document.createElement('ol');
+  ol.className = 'answers-grid-view grid grid-cols-4 gap-x-8 gap-y-2 text-sm leading-tight w-fit mx-auto';
+  list.forEach(([i, v]) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${i}.${String(v).toLowerCase()}</span>`;
+    ol.appendChild(li);
+  });
 
-        el.replaceChildren(ol);
+  // --- Vista TABELLA per stampa/Safari ---
+  const table = document.createElement('table');
+  table.className = 'answers-print-table';
+  const tbody = document.createElement('tbody');
+
+  const COLS = 4;
+  for (let r = 0; r < Math.ceil(list.length / COLS); r++) {
+    const tr = document.createElement('tr');
+    for (let c = 0; c < COLS; c++) {
+      const td = document.createElement('td');
+      const item = list[r * COLS + c];
+      if (item) {
+        const [idx, val] = item;
+        td.innerHTML = `<span data-styled-border class="inline-block rounded-md px-2 py-0.5 border w-14 text-center">${idx}.${String(val).toLowerCase()}</span>`;
+      } else {
+        td.innerHTML = '&nbsp;';
       }
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+
+  // Monta entrambe le viste
+  el.replaceChildren(ol, table);
+}
+
 
       renderAnswersInline('risposte', state.answers || []);
 
@@ -461,6 +487,7 @@
   </script>
 </body>
 </html>
+
 
 
 
