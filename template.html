@@ -171,27 +171,58 @@
     display: block !important;
   }
 }
-/* iOS/Safari only: stampa al ~78% */
+/* --- Safari/iOS ONLY: centratura + risposte --- */
 @supports (-webkit-touch-callout: none) {
   @media print {
-    /* Scala VISIVAMENTE ogni pagina (copertina + contenuti) */
+    /* 1️⃣ CENTRATURA E SCALA */
+    html, body {
+      height: 100%;
+      text-align: center !important;
+      background: #fff !important;
+    }
     .page {
-      transform: scale(0.78);
-      transform-origin: top center;
+      display: inline-block !important;
+      transform: scale(0.78) !important;
+      transform-origin: top center !important;
+      margin: 0 auto !important;
     }
 
-    /* Assicurati che lo spazio pagina non tagli nulla */
-    .page, .page-content {
-      overflow: visible !important;
+    /* 2️⃣ RISPOSTE A 4 COLONNE */
+    .answers-list {
+      display: block !important;
+      column-count: 4 !important;
+      column-gap: 8mm !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+    }
+    .answers-list > li {
+      display: inline-block !important;
+      width: 100% !important;
+      margin: 0 0 2mm 0 !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+    }
+    .answers-list [data-styled-border] {
+      display: inline-block !important;
+      min-width: 20mm;
+      text-align: center;
     }
 
-    /* Mantieni il salto pagina tra .page */
+    /* 3️⃣ MANTIENI SALTI PAGINA */
     .page + .page {
       page-break-before: always !important;
       break-before: page !important;
     }
+
+    /* 4️⃣ NON spegnere la nostra griglia */
+    .grid:not(.answers-list):not(.layout-ok),
+    .columns,
+    [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) {
+      display: block !important;
+    }
   }
 }
+
 
   
 
@@ -451,6 +482,7 @@
   </script>
 </body>
 </html>
+
 
 
 
