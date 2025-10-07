@@ -200,7 +200,37 @@
     [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) { display: block !important; }
   }
 }
+/* --- Safari/iOS: fix stampa griglia risposte --- */
+@media print {
+  /* Nascondi la vista a griglia, mostra quella alternativa */
+  .answers-grid-view { display: none !important; }
 
+  /* Fallback universale: layout 4 colonne via inline-block */
+  .answers-print-table {
+    display: block !important;
+    width: 100% !important;
+    font-size: 0; /* evita spazi tra gli inline-block */
+    text-align: center;
+    margin: 0 auto !important;
+  }
+
+  .answers-print-table span[data-styled-border] {
+    display: inline-block !important;
+    width: 23% !important;       /* 4 colonne per riga */
+    margin: 2mm 0.5% !important; /* spazio regolare */
+    font-size: 12px !important;  /* reset del font */
+    vertical-align: top !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Non serve nessun tr/td visibile */
+  .answers-print-table table,
+  .answers-print-table tr,
+  .answers-print-table td {
+    all: unset !important;
+  }
+}
 
 
   
@@ -487,6 +517,7 @@
   </script>
 </body>
 </html>
+
 
 
 
