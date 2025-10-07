@@ -73,12 +73,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* --- STAMPA: regole dure per Chrome/iOS/Safari --- */
+      /* --- STAMPA: regole dure per Chrome/iOS/Safari --- */
 @media print {
-  /* Safe-fit: riduci un filo la larghezza per evitare sfori hardware e bug @page */
+  /* Safe-fit: un filo più stretto di A4 per evitare sfori */
   .page,
   .page-content {
-    width: 200mm !important;              /* ← non 210mm, così non devi scalare al 80% */
+    width: 200mm !important;              /* non 210mm */
     min-height: 297mm !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
@@ -88,42 +88,30 @@
   }
 
   .page-content {
-    padding: 12mm !important;             /* ✅ margine interno reale */
+    padding: 12mm !important;             /* ✅ margini interni reali */
     page-break-after: always !important;
     break-after: page !important;
     box-shadow: none !important;
     overflow: visible !important;
   }
 
-  /* Copertina: forza resa in stampa */
+  /* Copertina: misure coerenti col safe-fit */
   .cover-media {
     display: block !important;
-    width: 200mm !important;              /* match con safe-fit */
+    width: 200mm !important;
     height: 297mm !important;
-    object-fit: contain !important;       /* contain più stabile in print */
+    object-fit: contain !important;
     object-position: center center !important;
-    background: none !important;
-    visibility: visible !important;
   }
-  .page-cover {
-    height: 297mm !important;
-    overflow: visible !important;
-  }
-  /* Fallback totale: usa background se necessario (aggiungi class="use-bg" all'HTML) */
-  .page-cover.use-bg .cover-media { display: none !important; }
-  .page-cover.use-bg {
-    background-repeat: no-repeat !important;
-    background-position: center center !important;
-    background-size: contain !important;
-  }
+  .page-cover { height: 297mm !important; overflow: visible !important; }
 
-  /* iOS/Chrome: niente fixed/absolute in stampa */
+  /* Nessun fixed/absolute in stampa */
   *[style*="position:fixed"], *[style*="position:absolute"],
   header, footer, .fixed, .sticky { position: static !important; }
 
   html, body { background: #fff !important; }
 
-  /* Forza colori e font sans */
+  /* Forza colori e font */
   * {
     -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
@@ -131,16 +119,10 @@
                  Roboto, "Helvetica Neue", Arial, sans-serif !important;
   }
 
-  /* Ogni .page dopo la prima inizia su pagina nuova */
-  .page + .page { page-break-before: always; break-before: page; }
-
-  /* Sblocca altezze fisse che causano overflow/tagli */
+  /* Sblocca altezze fisse che causano overflow */
   #risposteDisplay,
-  .h-[250px],
-  .h-[80px],
-  .h-[60px] {
-    height: auto !important;
-    min-height: auto !important;
+  .h-[250px], .h-[80px], .h-[60px] {
+    height: auto !important; min-height: auto !important;
   }
 
   /* Immagini/SVG responsive */
@@ -148,64 +130,34 @@
 
   /* Evita tagli interni */
   .card, .section, table, tr, img, svg, h2, h3, p {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
+    break-inside: avoid !important; page-break-inside: avoid !important;
   }
 
-  /* Ombre/transform alterano i box in stampa */
+  /* Niente ombre/transform */
   [style*="transform"] { transform: none !important; }
   .shadow, [class*="shadow-"] { box-shadow: none !important; }
 
-  /* In stampa: 4 colonne robuste per la lista risposte (tentativo A: columns) */
+  /* ✅ Lista risposte: FLEX WRAP (più robusto di grid/columns su Safari) */
   .answers-list {
-    display: block !important;
-    column-count: 4 !important;
-    -webkit-column-count: 4 !important;  /* Safari */
-    column-gap: 8mm !important;
-    width: 100% !important;
-    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6mm 8mm !important;
+    width: 100% !important;         /* neutralizza w-fit */
+    margin: 0 !important;           /* neutralizza mx-auto */
   }
   .answers-list > li {
-    display: inline-block !important;
-    width: 100% !important;
+    width: 25% !important;          /* 4 colonne */
     margin: 0 0 2mm 0 !important;
     break-inside: avoid !important;
     page-break-inside: avoid !important;
+    display: block !important;
   }
   .answers-list [data-styled-border]{
     display:inline-block !important;
-    min-width: 20mm;
-    text-align: center;
+    min-width: 20mm; text-align: center;
   }
-}
 
-/* --- Safari-only perfezionamenti --- */
-@supports (-webkit-touch-callout: none) {
-  @media print {
-    /* Safari onora poco @page margin: safe-fit ancora più stretto */
-    .page,
-    .page-content { width: 198mm !important; }
-
-    /* Risposte (fallback B): usa flex-wrap al posto delle columns */
-    .answers-list {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 6mm 8mm !important;
-      width: 100% !important;
-      margin: 0 !important;
-    }
-    .answers-list > li {
-      display: block !important;
-      width: 25% !important;            /* 4 colonne */
-      margin: 0 0 2mm 0 !important;
-      break-inside: avoid !important;
-      page-break-inside: avoid !important;
-    }
-  }
-}
-
-/* ✅ DA METTERE ALLA FINE: spegni altre grid/columns, NON la lista risposte */
-@media print {
+  /* ✅ METTI QUESTO IN FONDO: spegni le ALTRE grid, NON la lista risposte */
   .grid:not(.answers-list):not(.layout-ok),
   .columns,
   [class*="grid-cols-"]:not(.answers-list):not(.layout-ok) {
@@ -213,7 +165,13 @@
   }
 }
 
-   
+/* --- Safari-only: stringiamo di 2mm extra --- */
+@supports (-webkit-touch-callout: none) {
+  @media print {
+    .page, .page-content { width: 198mm !important; }
+  }
+} 
+
   </style>
 </head>
 
@@ -470,5 +428,6 @@
   </script>
 </body>
 </html>
+
 
 
