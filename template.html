@@ -89,6 +89,33 @@
                 print-color-adjust: exact !important;
       }
 
+      /* evita bug di Chrome con object-fit: cover sugli <img> */
+      .cover-media {
+        display: block !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        object-fit: contain !important;  /* contain è più stabile in print */
+        object-position: center center !important;
+        background: none !important;
+        visibility: visible !important;
+      }
+    
+      /* assicurati che il contenitore non "nasconda" nulla */
+      .page-cover {
+        height: 297mm !important;
+        overflow: visible !important;    /* niente clip in stampa */
+        -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+      }
+    
+      /* fallback totale: se proprio serve, mostra la copertina in background */
+      .page-cover.use-bg .cover-media { display: none !important; }
+      .page-cover.use-bg {
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        background-size: contain !important;
+      }
+
       /* iOS/Chrome: niente fixed/absolute in stampa */
       *[style*="position:fixed"], *[style*="position:absolute"] { position: static !important; }
       header, footer, .fixed, .sticky { position: static !important; }
@@ -400,3 +427,4 @@
   </script>
 </body>
 </html>
+
